@@ -3,4 +3,17 @@
   text-align: right;
   padding: 2rem;
   border-bottom: solid 3px red;
+  display: flex;
+	justify-content: flex-end;
+	flex-direction: row;
+	align-items: center;
+}
+
+.lmj-logo {
+  height: 45px;
+	width: 45px;
+}
+
+.lmj-title {
+  padding-left: 2rem;
 }
