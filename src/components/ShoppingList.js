@@ -1,4 +1,5 @@
 import { plantList } from "../datas/plantList"
+import "../styles/ShoppingList.css"
 
 /* À partir de cette liste de plantes, vous devrez :
 
@@ -16,20 +17,20 @@ const uniqueCategory = [...uniqueCategoriesSet];
 
 function ShoppingList() {
     return (
-        <>
-        <h3>Les categories de plantes</h3>
+        <div>
+        <h3>Les catégories de plantes</h3>
         <ul>
             {uniqueCategory.map((category, index) => (
                 <li key={index}>{ category }</li>
             ))}
         </ul>
         <h3>Liste des plantes</h3>
-        <ul>
-            {plantList.map((plant, index) => (
-                <li key={ plant.id}>{ plant.name } { plant.isBestSale && <span>'🔥'</span> }</li>
+        <ul className='lmj-plant-list'>
+            {plantList.map((plant) => (
+                <li className="lmj-plant-item" key={ plant.id}>{ plant.name } { plant.isSpecialOffer ? <div className="lmj-sales">Soldes</div> : null }</li>
             ))}
         </ul>
-        </>
+        </div>
     )
 }
 
