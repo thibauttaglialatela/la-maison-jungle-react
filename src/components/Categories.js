@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import '../styles/Categories.css'
 
 function Categories({ categories, onSelectCategory }) {
   const [selectedCategory, setSelectedCategory] = useState('');
@@ -15,15 +16,15 @@ function Categories({ categories, onSelectCategory }) {
   }
 
   return (
-    <div>
-    <select value={selectedCategory} onChange={handleCategoryChange}>
+    <div className='lmj-categories'>
+    <select className='lmj-categories-select' value={selectedCategory} onChange={handleCategoryChange}>
       {categories.map((cat) => (
         <option key={cat} value={cat}>
           {cat}
         </option>
       ))}
     </select>
-    <button onClick={resetCategory}>Réinitialiser</button>
+    <button className='lmj-categories-button' onClick={resetCategory}>Réinitialiser</button>
     </div>
   );
 }
