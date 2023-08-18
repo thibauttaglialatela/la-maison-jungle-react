@@ -1,6 +1,8 @@
 import { plantList } from '../datas/plantList'
 import PlantItem from './PlantItem'
 import '../styles/ShoppingList.css'
+import Categories from './Categories'
+import { useState } from 'react'
 
 function ShoppingList({ cart, updateCart }) {
 	const categories = plantList.reduce(
@@ -8,6 +10,8 @@ function ShoppingList({ cart, updateCart }) {
 			acc.includes(plant.category) ? acc : acc.concat(plant.category),
 		[]
 	)
+
+	const [selectedCategory, setSelectedCategory] = useState('');
 
 	function addToCart(name, price) {
 		const currentPlantSaved = cart.find((plant) => plant.name === name)
@@ -24,15 +28,14 @@ function ShoppingList({ cart, updateCart }) {
 		}
 	}
 
+	const filteredPlants = selectedCategory
+    ? plantList.filter((plant) => plant.category === selectedCategory)
+    : plantList;
 	return (
 		<div className='lmj-shopping-list'>
-			<ul>
-				{categories.map((cat) => (
-					<li key={cat}>{cat}</li>
-				))}
-			</ul>
+			<Categories categories={categories} onSelectCategory={setSelectedCategory} />
 			<ul className='lmj-plant-list'>
-				{plantList.map(({ id, cover, name, water, light, price }) => (
+				{filteredPlants.map(({ id, cover, name, water, light, price }) => (
 					<div key={id}>
 						<PlantItem
 							cover={cover}
