@@ -1,39 +1,33 @@
-import { useState } from "react";
-import "../styles/Footer.css";
+import { useState } from 'react'
+import '../styles/Footer.css'
 
 function Footer() {
-  const [email, setEmail] = useState('');
+	const [inputValue, setInputValue] = useState('')
 
-  const validateEmail = (email) => {
-    // Utiliser une expression régulière pour valider l'email
-    const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
-    return emailRegex.test(email);
-  };
+	function handleInput(e) {
+		setInputValue(e.target.value)
+	}
 
-  const handleBlur = () => {
-    const isValid = validateEmail(email);
-    if (!isValid) {
-      alert("L'adresse email n'est pas valide.");
-    }
-  };
+	function handleBlur() {
+		if (!inputValue.includes('@')) {
+			alert("Attention, il n'y a pas d'@, ceci n'est pas une adresse valide 😥")
+		}
+	}
 
-  return (
-    <footer className="lmj-footer">
-      <div className="lmj-footer-elem">
-        Pour les passionné·e·s de plantes 🌿🌱🌵
-      </div>
-      <div className="lmj-footer-elem">
-        Laissez-nous votre mail :
-        <input
-          type="email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          onBlur={handleBlur}
-        />
-        <button onClick={() => alert(email)}>Enregistrer</button>
-      </div>
-    </footer>
-  );
+	return (
+		<footer className='lmj-footer'>
+			<div className='lmj-footer-elem'>
+				Pour les passionné·e·s de plantes 🌿🌱🌵
+			</div>
+			<div className='lmj-footer-elem'>Laissez-nous votre mail :</div>
+			<input
+				placeholder='Entrez votre mail'
+				onChange={handleInput}
+				value={inputValue}
+				onBlur={handleBlur}
+			/>
+		</footer>
+	)
 }
 
-export default Footer;
+export default Footer
